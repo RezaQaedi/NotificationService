@@ -1,8 +1,8 @@
-﻿using NotificationService.NotificationService.Application.Contracts;
-using NotificationService.NotificationService.Domain.Notifications;
-using NotificationService.NotificationService.Domain.Shared;
+﻿using NotificationService.Application.Contracts;
+using NotificationService.Domain.Notifications;
+using NotificationService.Domain.Shared;
 
-namespace NotificationService.NotificationService.Application
+namespace NotificationService.Application
 {
     public class NotificationService(INotificationManagerResolver resolver,
         INotificationRepository repository) : INotificationService

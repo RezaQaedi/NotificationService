@@ -1,4 +1,4 @@
-﻿namespace NotificationService.NotificationService.Domain.Shared
+﻿namespace NotificationService.Domain.Shared
 {
     public class CreateNotificationModel(string notificationMethod, string message, string target, TimeSpan delay = default)
     {

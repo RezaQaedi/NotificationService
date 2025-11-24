@@ -1,6 +1,6 @@
-﻿using NotificationService.NotificationService.Domain.Shared;
+﻿using NotificationService.Domain.Shared;
 
-namespace NotificationService.NotificationService.Domain.Notifications
+namespace NotificationService.Domain.Notifications
 {
     public interface INotificationManager
     {

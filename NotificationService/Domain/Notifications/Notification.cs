@@ -1,6 +1,4 @@
-﻿using NotificationService.NotificationService.Application.Contracts;
-
-namespace NotificationService.NotificationService.Domain.Notifications
+﻿namespace NotificationService.Domain.Notifications
 {
     public class Notification
     {

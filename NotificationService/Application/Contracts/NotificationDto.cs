@@ -1,4 +1,4 @@
-﻿namespace NotificationService.NotificationService.Application.Contracts
+﻿namespace NotificationService.Application.Contracts
 {
     public class NotificationDto
     {

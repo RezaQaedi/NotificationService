@@ -1,4 +1,4 @@
-﻿namespace NotificationService.NotificationService.Domain.Notifications
+﻿namespace NotificationService.Domain.Notifications
 {
     public interface INotificationRepository
     {

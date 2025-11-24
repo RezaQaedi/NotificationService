@@ -1,3 +1,5 @@
+using NotificationService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -40,7 +42,10 @@ app.UseSwagger();
 app.UseSwaggerUI();
 app.Run();
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+namespace NotificationService
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+    {
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
 }

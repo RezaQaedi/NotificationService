@@ -8,5 +8,6 @@
         public bool? Success { get; set; }
         public DateTime? CompletionTime { get; set; }
         public string? FailureReason { get; set; }
+        public TimeSpan Delay { get; set; }
     }
 }

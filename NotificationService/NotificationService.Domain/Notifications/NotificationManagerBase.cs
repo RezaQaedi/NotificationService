@@ -9,7 +9,7 @@ namespace NotificationService.NotificationService.Domain.Notifications
 
         protected virtual Notification CreateNotifications(CreateNotificationModel model)
         {
-            return new Notification(GenerateNewNotificationId(), model.NotificationMethod, model.Target, model.Message);
+            return new Notification(GenerateNewNotificationId(), model.NotificationMethod, model.Target, model.Message, model.Delay);
         }
 
         protected virtual Task SetNotificationResultAsync(Notification notification, bool success,

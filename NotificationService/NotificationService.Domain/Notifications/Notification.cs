@@ -1,4 +1,6 @@
-﻿namespace NotificationService.NotificationService.Domain.Notifications
+﻿using NotificationService.NotificationService.Application.Contracts;
+
+namespace NotificationService.NotificationService.Domain.Notifications
 {
     public class Notification
     {
@@ -9,13 +11,15 @@
         public string Message { get; protected set; }
         public virtual DateTime? CompletionTime { get; protected set; }
         public virtual string? FailureReason { get; protected set; }
+        public TimeSpan Delay { get; set; }
 
-        public Notification(Guid id, string notificationMethod, string target, string message)
+        public Notification(Guid id, string notificationMethod, string target, string message, TimeSpan delay = default)
         {
             Id = id;
             Method = notificationMethod;
             Target = target;
             Message = message;
+            Delay = delay;
         }
 
         public void SetResult(bool success, string? failureReason = null)

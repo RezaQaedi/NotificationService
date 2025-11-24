@@ -2,7 +2,7 @@
 {
     public class NotificationServiceProviderConfigurations : Dictionary<string, NotificationServiceProviderConfiguration>
     {
-        public void AddProvider(NotificationServiceProviderConfiguration providerConfiguration)
+        public void Add(NotificationServiceProviderConfiguration providerConfiguration)
         {
             this[providerConfiguration.NotificationMethod] = providerConfiguration;
         }

@@ -2,6 +2,7 @@ using NotificationService.Api;
 using NotificationService.Application;
 using NotificationService.Domain;
 using NotificationService.EntityFrameworkCore;
+using NotificationService.Providers.Sms;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDomainServices();
 builder.Services.AddEfCore(builder.Configuration);
 builder.Services.AddApplicationServices();
+builder.Services.AddSms(builder.Configuration);
 
 var app = builder.Build();
 

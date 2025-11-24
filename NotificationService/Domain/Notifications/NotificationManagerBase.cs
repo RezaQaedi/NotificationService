@@ -4,6 +4,8 @@ namespace NotificationService.Domain.Notifications
 {
     public abstract class NotificationManagerBase: INotificationManager
     {
+        protected abstract string MethodName { get; }
+
         public abstract Task<Notification> CreateAsync(CreateNotificationModel model,
             CancellationToken cancellationToken = default);
 

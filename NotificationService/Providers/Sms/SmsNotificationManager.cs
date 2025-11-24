@@ -3,20 +3,22 @@ using NotificationService.Domain.Shared;
 
 namespace NotificationService.Providers.Sms
 {
-    public class SmsNotificationManager : NotificationManagerBase
+    public class SmsNotificationManager(ISmsSender smsSender) : NotificationManagerBase
     {
         protected override string MethodName => SmsNotificationConsts.MethodName;
 
-        public override Task<Notification> CreateAsync(CreateNotificationModel model, CancellationToken cancellationToken = default)
+        public override async Task<Notification> CreateAsync(CreateNotificationModel model, CancellationToken cancellationToken = default)
         {
+            // Todo : handle delay
+            // Todo : handle model params
+
             var notification = base.CreateNotifications(model);
-            // resolve sms sender 
-            // try to send sms
-            // set the result 
 
-            notification.SetResult(true);
+            var result = await smsSender.SendAsync(new SmsMessage(model.Target, model.Message), cancellationToken);
 
-            return Task.FromResult(notification);
+            notification.SetResult(result.Success, result.ErrorMessage);
+
+            return notification;
         }
     }
 }

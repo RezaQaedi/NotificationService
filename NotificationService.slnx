@@ -1,3 +1,8 @@
 <Solution>
-  <Project Path="NotificationService/NotificationService.csproj" />
+  <Folder Name="/src/">
+    <Project Path="NotificationService/NotificationService.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="NotificationService.Test/NotificationService.Test.csproj" Id="5be47f53-a02f-45b8-9cd9-25433cb2d817" />
+  </Folder>
 </Solution>

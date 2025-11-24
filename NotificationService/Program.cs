@@ -1,4 +1,5 @@
 using NotificationService;
+using NotificationService.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddEfCore(builder.Configuration);
 
 var app = builder.Build();
 

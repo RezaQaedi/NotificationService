@@ -1,6 +1,7 @@
 ﻿using NotificationService.Application.Contracts;
 using NotificationService.Domain.Notifications;
 using NotificationService.Domain.Shared;
+using Volo.Abp.ObjectExtending;
 
 namespace NotificationService.Application
 {
@@ -11,14 +12,17 @@ namespace NotificationService.Application
         {
             var manager = resolver.Resolve(input.NotificationMethod);
 
-            var result = await manager.CreateAsync(new
-                CreateNotificationModel(input.NotificationMethod, input.Message, input.Target, input.Delay), cancellationToken);
+            var createModel = new CreateNotificationModel(input.NotificationMethod, input.Message, input.Target, input.Delay);
+            input.MapExtraPropertiesTo(createModel, MappingPropertyDefinitionChecks.None); // don't do MappingPropertyDefinitionChecks.None in production
 
-            return MapToDto(await repository.InsertAsync(result, cancellationToken));
+            var notification = await manager.CreateAsync(createModel, cancellationToken);
+            
+            return MapToDto(await repository.InsertAsync(notification, cancellationToken));
         }
 
         private static NotificationDto MapToDto(Notification notification)
-            => new()
+        {
+            var dto = new NotificationDto()
             {
                 NotificationMethod = notification.Method,
                 Target = notification.Target,
@@ -28,5 +32,10 @@ namespace NotificationService.Application
                 Success = notification.Success,
                 Delay = notification.Delay
             };
+
+            notification.MapExtraPropertiesTo(dto, MappingPropertyDefinitionChecks.None);
+
+            return dto;
+        }
     }
 }

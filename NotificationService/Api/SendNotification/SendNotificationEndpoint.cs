@@ -1,4 +1,5 @@
 ﻿using NotificationService.Application.Contracts;
+using Volo.Abp.Data;
 
 namespace NotificationService.Api.SendNotification
 {
@@ -11,10 +12,18 @@ namespace NotificationService.Api.SendNotification
                 Delay = request.Delay, 
                 NotificationMethod = request.NotificationMethod, 
                 Message = request.Message, 
-                Target = request.Target
+                Target = request.Target,
+                ExtraProperties = request.ExtraProperties
             }, cancellationToken));
         }
     }
 
-    public record SendNotificationRequest(string Target, string NotificationMethod, string Message, TimeSpan Delay);
+    public class SendNotificationRequest(string target, string notificationMethod, string message, TimeSpan delay) : IHasExtraProperties
+    {
+        public string Target { get; init; } = target;
+        public string NotificationMethod { get; init; } = notificationMethod;
+        public string Message { get; init; } = message;
+        public TimeSpan Delay { get; init; } = delay;
+        public ExtraPropertyDictionary ExtraProperties { get; set; } = new();
+    }
 }

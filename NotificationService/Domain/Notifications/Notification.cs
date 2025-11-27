@@ -1,6 +1,8 @@
-﻿namespace NotificationService.Domain.Notifications
+﻿using Volo.Abp.Data;
+
+namespace NotificationService.Domain.Notifications
 {
-    public class Notification
+    public class Notification : IHasExtraProperties
     {
         public virtual Guid Id { get; protected set; }
         public virtual string Method { get; protected set; }
@@ -20,6 +22,8 @@
             Target = target;
             Message = message;
             Delay = delay;
+
+            ExtraProperties = new ExtraPropertyDictionary();
         }
 
         public void SetResult(bool success, string? failureReason = null)
@@ -33,5 +37,7 @@
             Success = success;
             FailureReason = failureReason;
         }
+
+        public ExtraPropertyDictionary ExtraProperties { get; protected set; }
     }
 }
